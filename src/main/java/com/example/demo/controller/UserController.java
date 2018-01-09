@@ -1,7 +1,9 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.ConfigBean;
 import com.example.demo.dao.UserMapper;
 import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +21,9 @@ public class UserController {
 
     @Autowired
     ConfigBean configBean;
-
     @Autowired
-    private UserMapper userMapper;
+    UserService userService;
+
 
     @Value("${com.test.name}")
     private  String name;
@@ -32,8 +34,7 @@ public class UserController {
     @RequestMapping(value = "/getUserByGet")
     Map<String, Object> getUserByGet(@RequestParam(value = "userName") String userName)
             throws JsonProcessingException {
-
-        User u = userMapper.findByName(userName);
+        User u = userService.findByName(userName);
 
         Map<String, Object> map = new HashMap<>(10);
         map.put("name", configBean.getName());
