@@ -6,6 +6,6 @@ public interface UserService {
 
     User findByName(String userName);
 
-    int insert(String name, Integer age);
+    int insert(String name, Integer age) throws Exception;
 
 }

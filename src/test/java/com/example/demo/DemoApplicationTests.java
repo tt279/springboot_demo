@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.service.PointService;
 import com.example.demo.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +14,20 @@ public class DemoApplicationTests {
 
     @Autowired
     UserService userService;
+    @Autowired
+    PointService pointService;
 
     @Test
     public void test() throws Exception {
-        userService.insert("a", 20);
-        userService.insert("b", 21);
+
+        System.out.println("=====================START");
+        try {
+            userService.insert("b", 20);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println("=====================END");
     }
 
 }
