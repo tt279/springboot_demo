@@ -20,9 +20,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
   <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
 
   <!-- 声明需要暴露的服务接口 -->
-  <dubbo:service interface="com.example.demo.service.UserService" ref="userService"  retries="0" timeout="5000" />
-
-  <!-- 具体的实现bean -->
-  <bean id="userService" class="com.example.demo.service.impl.UserServiceImpl" />
+  <dubbo:service interface="com.example.demo.service.UserService" ref="userServiceImpl"  retries="0" timeout="5000" />
 
 </beans>
