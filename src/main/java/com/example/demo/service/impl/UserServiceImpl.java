@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.dao.UserMapper;
-import com.example.demo.model.Point;
 import com.example.demo.model.User;
 import com.example.demo.service.PointService;
 import com.example.demo.service.UserService;

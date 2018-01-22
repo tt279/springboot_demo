@@ -1,3 +1,4 @@
+/*
 package com.example.demo.processor;
 
 import org.springframework.beans.BeansException;
@@ -15,3 +16,4 @@ public class BeanFactoryPostProcessorTest implements BeanFactoryPostProcessor {
     }
 
 }
+*/
