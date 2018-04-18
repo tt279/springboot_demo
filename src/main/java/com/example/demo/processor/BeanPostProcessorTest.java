@@ -1,4 +1,3 @@
-/*
 package com.example.demo.processor;
 
 import org.springframework.beans.BeansException;
@@ -11,16 +10,15 @@ public class BeanPostProcessorTest implements
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName)
             throws BeansException {
-        System.out.println("postProcessBeforeInitialization=【"+beanName+"】");
+        System.out.println("[容器级]BeanPostProcessor.postProcessBeforeInitialization=" + beanName);
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName)
             throws BeansException {
-        System.out.println("postProcessAfterInitialization=【"+beanName+"】");
+        System.out.println("[容器级]BeanPostProcessor.postProcessAfterInitialization=" + beanName);
         return bean;
     }
 
 }
-*/
