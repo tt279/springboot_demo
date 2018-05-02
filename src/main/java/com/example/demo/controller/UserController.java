@@ -62,7 +62,7 @@ public class UserController {
 
         testService.test();
 
-        Map<String, Object> map = new HashMap<>(10);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("name", "lll");
 
         try {
@@ -70,6 +70,19 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return map;
+    }
+
+
+    @RequestMapping(value = "/testScan")
+    Map<String, Object> testScan()
+            throws JsonProcessingException {
+
+        testService.testScan();
+
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("testScan", "testScan");
 
         return map;
     }
