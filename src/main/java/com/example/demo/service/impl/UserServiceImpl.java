@@ -7,7 +7,8 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+//@Scope(value = "prototype" , proxyMode = ScopedProxyMode.DEFAULT)
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -29,14 +30,19 @@ public class UserServiceImpl implements UserService {
     public int insert(String name, Integer age) throws Exception {
         //测试嵌套事务   pioint 应当插入成功，user回滚
 
-        userMapper.insert("a", 20);
+        userMapper.insert("a", 33);
 
-        pointService.insert(2L, 2L);
+        try {
+            pointService.insert(3L, 3L);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
-        if( age ==20 ){
+        System.out.println("UserServiceImpl:" + TransactionAspectSupport.currentTransactionStatus().isRollbackOnly());
+    /*    if( age ==20 ){
             throw new RuntimeException();
         }
-        userMapper.insert(name, age);
+        userMapper.insert(name, age);*/
 
         return 1;
     }

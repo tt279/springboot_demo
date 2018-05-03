@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.ConfigBean;
-import com.example.demo.dao.UserMapper;
 import com.example.demo.model.User;
+import com.example.demo.service.TestService;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.HashMap;
@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//@RestController注解能够使项目支持Rest
+//@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+//@Scope(value = "prototype" , proxyMode = ScopedProxyMode.TARGET_CLASS)
+// /@RestController注解能够使项目支持Rest
 @RestController
 //表示该controller类下所有的方法都公用的一级上下文根
 @RequestMapping(value = "/springboot")
@@ -23,7 +25,8 @@ public class UserController {
     ConfigBean configBean;
     @Autowired
     UserService userService;
-
+    @Autowired
+    TestService testService;
 
     @Value("${com.test.name}")
     private  String name;
@@ -41,6 +44,45 @@ public class UserController {
         map.put("content", content);
         map.put("userName", userName);
         map.put("user", u);
+
+        return map;
+    }
+
+
+    @RequestMapping(value = "/test")
+    Map<String, Object> test()
+            throws JsonProcessingException {
+        System.out.println("statr di=================");
+        System.out.println("controller:" + this);
+        System.out.println("controller:" + this);
+        System.out.println("controller:" + this);
+
+        System.out.println("controller:" + testService);
+        System.out.println("controller:" + testService);
+
+        testService.test();
+
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("name", "lll");
+
+        try {
+            userService.insert("kk",2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return map;
+    }
+
+
+    @RequestMapping(value = "/testScan")
+    Map<String, Object> testScan()
+            throws JsonProcessingException {
+
+        testService.testScan();
+
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("testScan", "testScan");
 
         return map;
     }

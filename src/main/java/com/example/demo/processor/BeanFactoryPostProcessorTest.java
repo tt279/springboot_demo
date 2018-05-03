@@ -1,4 +1,3 @@
-/*
 package com.example.demo.processor;
 
 import org.springframework.beans.BeansException;
@@ -12,8 +11,7 @@ public class BeanFactoryPostProcessorTest implements BeanFactoryPostProcessor {
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
             throws BeansException {
-        System.out.println("BeanFactoryPostProcessorTest");
+        System.out.println("[容器级]BeanFactoryPostProcessor.postProcessBeanFactory");
     }
 
 }
-*/

@@ -2,6 +2,8 @@ package com.example.demo;
 
 import com.example.demo.service.PointService;
 import com.example.demo.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +24,23 @@ public class DemoApplicationTests {
     @Autowired
     Environment environment;
 
+    private static Logger log = LogManager.getLogger(DemoApplicationTests.class);
+
     @Test
     public void test() throws Exception {
 
-        System.out.println(configBean.getName());
-        System.out.println(environment.getProperty("com.test.content"));
-        System.out.println(environment.getProperty("com.mytest.content"));
-        System.out.println("=====================START");
+        log.info(configBean.getName());
+        log.info(environment.getProperty("com.test.content"));
+        log.info(environment.getProperty("com.mytest.content"));
+        log.info("=====================START");
+
         try {
-            userService.insert("b", 20);
+        //    userService.insert("a", 33);
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        System.out.println("=====================END");
+        log.info("=====================END");
     }
 
 }
