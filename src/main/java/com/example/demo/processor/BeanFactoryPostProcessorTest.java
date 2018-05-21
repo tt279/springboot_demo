@@ -14,4 +14,8 @@ public class BeanFactoryPostProcessorTest implements BeanFactoryPostProcessor {
         System.out.println("[容器级]BeanFactoryPostProcessor.postProcessBeanFactory");
     }
 
+    static {
+        System.out.println("加载BeanScannerConfigurer");
+    }
+
 }

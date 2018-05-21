@@ -21,4 +21,8 @@ public class BeanPostProcessorTest implements
         return bean;
     }
 
+    static {
+        System.out.println("加载BeanScannerConfigurer");
+    }
+
 }
