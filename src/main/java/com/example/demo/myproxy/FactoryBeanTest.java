@@ -10,6 +10,8 @@ public class FactoryBeanTest<T> implements InitializingBean, FactoryBean<T> {
     public void setInnerClassName(String innerClassName) {
         this.innerClassName = innerClassName;
     }
+
+    @Override
     public T getObject() throws Exception {
         Class innerClass = Class.forName(innerClassName);
         if (innerClass.isInterface()) {
@@ -22,6 +24,8 @@ public class FactoryBeanTest<T> implements InitializingBean, FactoryBean<T> {
             return (T) enhancer.create();
         }
     }
+
+    @Override
     public Class<?> getObjectType() {
         try {
             return Class.forName(innerClassName);
@@ -30,9 +34,13 @@ public class FactoryBeanTest<T> implements InitializingBean, FactoryBean<T> {
         }
         return null;
     }
+
+    @Override
     public boolean isSingleton() {
         return true;
     }
+
+    @Override
     public void afterPropertiesSet() throws Exception {
     }
 
