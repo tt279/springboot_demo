@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--启动项设置为 trace，加载 springboot 启动内部各种详细输出-->
-<Configuration status="debug">
+<Configuration status="info">
   <Appenders>
     <!--添加一个控制台追加器-->
     <Console name="Console" target="SYSTEM_OUT" follow="true">
@@ -16,9 +16,17 @@
     </File>
   </Appenders>
   <Loggers>
-    <Logger name="com.example" level="debug" />
+    <Logger name="com.example" level="error" />
     <!--记录 org.springframework 包及其子包 debug 及其以上的记录，并输出到文件中-->
-    <Logger name="org.springframework" level="debug" >
+    <Logger name="org.springframework" level="info" >
+      <!-- AppenderRef 可以控制文件输出对象-->
+      <AppenderRef ref="File" />
+    </Logger>
+    <Logger name="com.alibaba.dubbo" level="debug" >
+      <!-- AppenderRef 可以控制文件输出对象-->
+      <AppenderRef ref="File" />
+    </Logger>
+    <Logger name="com.example.demo" level="info" >
       <!-- AppenderRef 可以控制文件输出对象-->
       <AppenderRef ref="File" />
     </Logger>
