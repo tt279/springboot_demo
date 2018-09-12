@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,12 +40,19 @@ public class UserController {
     Map<String, Object> getUserByGet(@RequestParam(value = "userName") String userName)
             throws JsonProcessingException {
         User u = userService.findByName(userName);
+        System.out.println(userService);
+        System.out.println(userService);
 
         Map<String, Object> map = new HashMap<>(10);
         map.put("name", configBean.getName());
         map.put("content", content);
         map.put("userName", userName);
-        map.put("user", u);
+        //map.put("user", u);
+
+        //System.out.println(Thread.currentThread().getContextClassLoader().toString());
+        System.out.println(userService.getClass().getClassLoader().toString());
+        System.out.println(Thread.currentThread().getName().toString());
+
 
         return map;
     }

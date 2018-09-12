@@ -4,7 +4,11 @@ import com.example.demo.dao.UserMapper;
 import com.example.demo.model.User;
 import com.example.demo.service.PointService;
 import com.example.demo.service.UserService;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -18,6 +22,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PointService pointService;
 
+
+
     @Override
     public User findByName(String userName) {
 
@@ -29,22 +35,32 @@ public class UserServiceImpl implements UserService {
     @Override
     public int insert(String name, Integer age) throws Exception {
         //测试嵌套事务   pioint 应当插入成功，user回滚
+        System.out.println(AopContext.currentProxy().hashCode());
+        System.out.println(TransactionAspectSupport.currentTransactionStatus().hasSavepoint());
 
-        userMapper.insert("a", 33);
+        userMapper.insert("a", 20);
 
         try {
-            pointService.insert(3L, 3L);
+            pointService.insert(2L, 2L);
         } catch (Exception e){
+            System.out.println(TransactionAspectSupport.currentTransactionStatus().isRollbackOnly());
             e.printStackTrace();
         }
 
-        System.out.println("UserServiceImpl:" + TransactionAspectSupport.currentTransactionStatus().isRollbackOnly());
-    /*    if( age ==20 ){
+      /*  if( age ==20 ){
             throw new RuntimeException();
-        }
-        userMapper.insert(name, age);*/
+        }*/
+     //   userMapper.insert(name, age);
 
         return 1;
     }
+
+/*
+    @Autowired
+    public UserServiceImpl(PointService pointService){
+
+        this.pointService = pointService;
+    }
+*/
 
 }

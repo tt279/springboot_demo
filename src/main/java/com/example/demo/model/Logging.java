@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -30,5 +27,10 @@ public class Logging {
     @After("selectAll()")
     public void afterAdvice(){
         System.out.println("afterAdvice Logging");
+    }
+
+    @AfterThrowing("selectAll()")
+    public void afterThrowingAdvice(){
+        System.out.println("afterThrowingAdvice Logging");
     }
 }

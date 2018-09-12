@@ -18,11 +18,11 @@
   <Loggers>
     <Logger name="com.example" level="error" />
     <!--记录 org.springframework 包及其子包 debug 及其以上的记录，并输出到文件中-->
-    <Logger name="org.springframework" level="info" >
+    <Logger name="org.springframework" level="debug" >
       <!-- AppenderRef 可以控制文件输出对象-->
       <AppenderRef ref="File" />
     </Logger>
-    <Logger name="com.alibaba.dubbo" level="debug" >
+    <Logger name="com.alibaba.dubbo" level="info" >
       <!-- AppenderRef 可以控制文件输出对象-->
       <AppenderRef ref="File" />
     </Logger>

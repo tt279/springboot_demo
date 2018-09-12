@@ -12,7 +12,7 @@
     </insert>
 
     <select id="findByName" resultMap="BaseResultMap"  >
-        SELECT * FROM USER WHERE NAME = #{name}")
+        SELECT * FROM USER WHERE NAME = #{name}
     </select>
 
 </mapper>

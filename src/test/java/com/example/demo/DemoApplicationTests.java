@@ -35,7 +35,7 @@ public class DemoApplicationTests {
         log.info("=====================START");
 
         try {
-        //    userService.insert("a", 33);
+           userService.insert("a", 33);
         } catch (Exception e){
             e.printStackTrace();
         }
